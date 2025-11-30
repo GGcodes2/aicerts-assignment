@@ -1,37 +1,187 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📘 Mini Audit Trail Generator.
 
-## Getting Started
+A lightweight full-stack versioning system built with Next.js, featuring a content editor, version history tracking, and custom backend diff logic.
 
-First, run the development server:
+This project was created as part of a 2-hour originality task and demonstrates full-stack skills including API development, custom algorithms, and UI design.
 
-```bash
+🚀 Features
+📝 Content Editor
+
+Simple text editor for writing and modifying content
+
+“Save Version” button triggers backend version tracking
+
+📜 Version History
+
+Each saved version stores:
+
+id (UUID)
+
+timestamp
+
+addedWords (words newly introduced)
+
+removedWords (words deleted)
+
+oldLength (word count before change)
+
+newLength (word count after change)
+
+content snapshot
+
+⚙️ Backend (Next.js API Routes)
+
+Custom backend logic:
+
+Computes word-level diffs
+
+Extracts added & removed words
+
+Calculates old/new word counts
+
+Generates version objects
+
+Stores versions (in-memory, Vercel-friendly)
+
+🧠 How Diff Logic Works
+
+Normalize text:
+
+lowercasing
+
+removing punctuation
+
+splitting by whitespace
+
+Convert to arrays:
+
+oldWords = ["hello", "world"]
+newWords = ["hello", "nextjs", "world"]
+
+
+Convert to sets and compute:
+
+addedWords = newWords - oldWords
+removedWords = oldWords - newWords
+
+
+Count word lengths
+
+Return summary object
+
+🗂️ Project Structure
+app/
+  page.jsx                → UI
+  api/
+    save-version/
+      route.js            → Save version API (POST)
+    versions/
+      route.js            → Fetch versions API (GET)
+
+🔗 API Endpoints
+▶️ POST /api/save-version
+
+Request body:
+
+{ "content": "your text here" }
+
+
+Response example:
+
+{
+  "id": "c9329d36-42c7-4e96-9af3-52f17c1f88ef",
+  "timestamp": "2025-11-26 13:40",
+  "addedWords": ["dashboard"],
+  "removedWords": ["pilot"],
+  "oldLength": 43,
+  "newLength": 51,
+  "content": "updated text..."
+}
+
+▶️ GET /api/versions
+
+Returns full history (newest → oldest):
+
+[
+  {
+    "id": "...",
+    "timestamp": "...",
+    "addedWords": [...],
+    "removedWords": [...],
+    "oldLength": 0,
+    "newLength": 12,
+    "content": "..."
+  }
+]
+
+🏗️ Technology Stack
+Frontend
+
+Next.js (App Router)
+
+React (Client Components)
+
+Backend
+
+Next.js Route Handlers
+
+In-memory storage (Vercel compatible)
+
+Custom diff algorithm (no libraries)
+
+🛠️ Running Locally
+1. Clone repo
+git clone <your-repo-url>
+cd <project-folder>
+
+2. Install dependencies
+npm install
+
+3. Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+App will run at:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🌐 Deployment (Vercel)
 
-To learn more about Next.js, take a look at the following resources:
+Push project to GitHub
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open https://vercel.com
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Import project
 
-## Deploy on Vercel
+Deploy (Next.js auto-detected)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Note:
+App uses in-memory storage — ideal for assignment and supported by Vercel.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# aicerts-assignment
+📌 Why In-Memory Storage?
+
+The assignment allows:
+
+JSON file
+
+SQLite
+
+In-memory array
+
+On Vercel, writing files is not allowed, so in-memory storage is the most stable deployment method and 100% within task rules.
+
+🎯 Evaluation Criteria Covered
+
+✔ Full-stack architecture
+✔ Custom diff algorithm
+✔ Working API endpoints
+✔ Clean and readable code
+✔ Proper use of timestamp + UUID
+✔ Deployed version available
+✔ No external libraries for diffing
+
+🧑‍💻 Author
+
+Gaurav Katare
+Full Stack Developer
+React | Next.js | Node.js
