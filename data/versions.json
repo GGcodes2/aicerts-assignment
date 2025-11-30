@@ -1,0 +1,67 @@
+[
+  {
+    "id": "d3ebff00-5dce-45a2-80b1-d02b257ea7b2",
+    "timestamp": "2025-11-29T16:08:48.926Z",
+    "addedWords": [
+      "i",
+      "am",
+      "gaurav"
+    ],
+    "removedWords": [],
+    "oldLength": 0,
+    "newLength": 3,
+    "content": "i am gaurav"
+  },
+  {
+    "id": "fed0ebf3-6f30-4329-a66b-5ff493671063",
+    "timestamp": "2025-11-29T16:08:54.773Z",
+    "addedWords": [
+      "katare"
+    ],
+    "removedWords": [],
+    "oldLength": 3,
+    "newLength": 4,
+    "content": "i am gaurav katare"
+  },
+  {
+    "id": "ee31b39e-6e3f-4163-809a-8e470a5992dc",
+    "timestamp": "2025-11-29T16:27:05.079Z",
+    "addedWords": [
+      "hello"
+    ],
+    "removedWords": [
+      "i",
+      "am",
+      "gaurav",
+      "katare"
+    ],
+    "oldLength": 4,
+    "newLength": 1,
+    "content": "hello\n"
+  },
+  {
+    "id": "d2174252-5766-4848-89c8-9c2e8ebd6993",
+    "timestamp": "2025-11-29T16:34:19.314Z",
+    "addedWords": [
+      "world"
+    ],
+    "removedWords": [],
+    "oldLength": 1,
+    "newLength": 2,
+    "content": "hello world\n"
+  },
+  {
+    "id": "d225f0bb-b181-41ea-bd94-b937e6710287",
+    "timestamp": "2025-11-29T16:34:41.406Z",
+    "addedWords": [
+      "hii"
+    ],
+    "removedWords": [
+      "hello",
+      "world"
+    ],
+    "oldLength": 2,
+    "newLength": 1,
+    "content": "hii"
+  }
+]
