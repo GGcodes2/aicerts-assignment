@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-// --------- Types ---------
+// ---------- Types ----------
 type Version = {
   id: string;
   timestamp: string;
@@ -14,12 +14,13 @@ type Version = {
 };
 
 export default function Page() {
+  // ---------- State ----------
   const [content, setContent] = useState<string>("");
-  const [versions, setVersions] = useState<Version[]>([]);
+  const [versions, setVersions] = useState<Version[]>([]); // IMPORTANT: typed array
   const [saving, setSaving] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  // --------- Load versions on page load ---------
+  // ---------- Load existing versions ----------
   useEffect(() => {
     fetch("/api/versions")
       .then((res) => res.json())
@@ -31,7 +32,7 @@ export default function Page() {
       .catch(() => setError("Failed to load versions"));
   }, []);
 
-  // --------- Save version handler ---------
+  // ---------- Save Version ----------
   const saveVersion = async () => {
     setSaving(true);
     setError("");
@@ -51,16 +52,15 @@ export default function Page() {
 
       const saved: Version = json;
 
-      setVersions((prev) => [saved, ...prev]);
+      // THIS is now valid because versions is Version[]
+      setVersions((prev: Version[]) => [saved, ...prev]);
     } catch (err: any) {
-      console.error(err);
       setError(err.message || "Unknown error");
     } finally {
       setSaving(false);
     }
   };
 
-  // --------- UI ---------
   return (
     <main style={{ padding: 24, fontFamily: "sans-serif" }}>
       <h1>Content Editor</h1>
@@ -126,11 +126,9 @@ export default function Page() {
 
             <div style={{ marginTop: 8, fontSize: 14 }}>
               <strong>Added:</strong>{" "}
-              {v.addedWords.length ? v.addedWords.join(", ") : "—"}
-              <br />
+              {v.addedWords.length ? v.addedWords.join(", ") : "—"} <br />
               <strong>Removed:</strong>{" "}
-              {v.removedWords.length ? v.removedWords.join(", ") : "—"}
-              <br />
+              {v.removedWords.length ? v.removedWords.join(", ") : "—"} <br />
               <strong>Old Length:</strong> {v.oldLength} |{" "}
               <strong>New Length:</strong> {v.newLength}
             </div>
